@@ -10,8 +10,8 @@ jobs:
         with:
           python-version: 3.11
       - run: pip install -r requirements.txt pyinstaller
-      - run: pyuic -o optimization_methods/gui/MainWindowUi.py optimization_methods/gui/MainWindow.ui
-      - run: pyinstaller --noconsole --onefile --icon=etc/icon.ico --add-data="optimization_methods/gui/MainWindow.ui;." --name optimization_methods optimization_methods/__main__.py
+      - run: pyuic5 -o optimization_methods/gui/MainWindowUi.py optimization_methods/gui/MainWindow.ui
+      - run: pyinstaller --noconsole --onefile --icon=etc/icon.ico --name optimization_methods optimization_methods/__main__.py
       - uses: actions/upload-artifact@v2
         with:
           name: optimization_methods
