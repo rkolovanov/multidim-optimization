@@ -1,19 +1,27 @@
 name: Build optimization_methods
 on:
   push:
+    branches:
+      - main
 jobs:
   build-app:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup python 3.11
+        uses: actions/setup-python@v2
         with:
           python-version: 3.11
-      - run: pip install -r requirements.txt pyinstaller
-      - run: pyuic5 -o optimization_methods/gui/MainWindowUi.py optimization_methods/gui/MainWindow.ui
-      - run: pyinstaller --noconsole --onefile --icon=etc/icon.ico --name optimization_methods optimization_methods/__main__.py
-      - uses: actions/upload-artifact@v2
+      - name: Install requirements
+        run: pip install -r requirements.txt pyinstaller
+      - name: Generate UI scripts from .ui files
+        run: pyuic5 -o optimization_methods/gui/MainWindowUi.py optimization_methods/gui/MainWindow.ui
+      - name: Generate Windows package
+        run: pyinstaller --noconsole --onefile --icon=etc/icon.ico --name optimization_methods optimization_methods/__main__.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
         with:
           name: optimization_methods
           path: dist/*
-          retention-days: 2
+          retention-days: 1
