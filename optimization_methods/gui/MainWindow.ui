@@ -71,7 +71,7 @@
               <string/>
              </property>
              <property name="placeholderText">
-              <string>Пример: x1 ** 2 + (x2 ** 0.5) * x3</string>
+              <string>Пример: x1 ** 2 + x2 ** 2 + x3 ** 2</string>
              </property>
             </widget>
            </item>
