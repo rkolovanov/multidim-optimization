@@ -1,20 +1,17 @@
 import numpy as np
-from pathlib import Path
-from PyQt5 import uic
 from PyQt5.QtWidgets import QMainWindow
 from optimization_methods.common import Function
 from optimization_methods.common import GradientDescentMethod, NewtonMethod, ConjugateGradientsMethod
+from .MainWindowUi import Ui_MainWindow
 
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self._setup_ui()
 
     def _setup_ui(self):
-        ui_filepath = str(Path(__file__).parent.absolute().joinpath(f"{self.__class__.__name__}.ui"))
-        uic.loadUi(ui_filepath, self)
-
+        self.setupUi(self)
         self.startButton.pressed.connect(self._start_method_execution)
 
     def _set_results(self, results: str):
