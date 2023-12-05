@@ -21,4 +21,7 @@ class Function:
         args = {}
         for i in range(0, len(x)):
             args[f"x{i+1}"] = x[i]
-        return float(self.function.subs(args))
+        try:
+            return float(self.function.subs(args))
+        except Exception as error:
+            raise RuntimeError(f"Невозможно вычислить вещественное значение целевой функции в точке {x}. {error}.")
