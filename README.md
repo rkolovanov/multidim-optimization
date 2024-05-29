@@ -1,1 +1,1 @@
-# multidimensional-optimization
+# multidim-optimization
